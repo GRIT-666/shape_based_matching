@@ -133,6 +133,7 @@ void scale_test(string mode = "test"){
 
     // feature numbers(how many ori in one templates?)
     // two pyramids, lower pyramid(more pixels) in stride 4, lower in stride 8
+    //第一个参数为 特征点个数 ， 第二个参数是一个 vector, 每个元素代表每一层的T
     line2Dup::Detector detector(num_feature, {4, 8});
 
 //    mode = "test";
@@ -141,6 +142,7 @@ void scale_test(string mode = "test"){
         assert(!img.empty() && "check your img path");
         shape_based_matching::shapeInfo_producer shapes(img);
 
+        //对模板图像进行尺度缩放和旋转
         shapes.scale_range = {0.1f, 1};
         shapes.scale_step = 0.01f;
         shapes.produce_infos();
